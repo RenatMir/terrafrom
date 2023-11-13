@@ -21,3 +21,12 @@ variable "aws_region" {
   description = "AWS region"
   default     = "eu-north-1"
 }
+
+# ---------------------
+# Networking
+# ---------------------
+variable "vpc_cidr_block" {
+  type        = string
+  description = "CIDR block of the VPC to create."
+  default     = "10.0.0.0/16"
+}
