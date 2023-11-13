@@ -1,0 +1,7 @@
+jobs:
+  - script: >
+      job('Initial Job'){
+        steps {
+          shell('echo Hello World')
+        }
+      }
