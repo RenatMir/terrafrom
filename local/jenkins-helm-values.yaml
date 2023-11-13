@@ -1,0 +1,9 @@
+controller:
+  image: "miburo/jenkins"
+  tag: "1.0.1"
+
+  installPlugins: false
+  overwritePlugins: true
+
+  JCasC:
+    defaultConfig: false

@@ -1,0 +1,22 @@
+jenkins:
+  clouds:
+    - kubernetes:
+        jenkinsTunnel: "jenkins-agent.jenkins.svc.cluster.local:50000"
+        jenkinsUrl: "http://jenkins.jenkins.svc.cluster.local:8080"
+        name: "kubernetes"
+        namespace: "jenkins"
+        serverUrl: "https://kubernetes.default"
+        templates:
+          - containers:
+              - args: "^${computer.jnlpmac} ^${computer.name}"
+                envVars:
+                  - envVar:
+                      key: "JENKINS_URL"
+                      value: "http://jenkins.jenkins.svc.cluster.local:8080/"
+                image: "jenkins/inbound-agent:3107.v665000b_51092-15"
+                name: "jnlp"
+                workingDir: "/home/jenkins/agent"
+            label: "default-agent"
+            name: "default-agent"
+            namespace: "jenkins"
+            yamlMergeStrategy: "override"
