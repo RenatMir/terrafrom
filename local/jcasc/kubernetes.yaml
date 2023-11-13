@@ -1,10 +1,15 @@
 jenkins:
   clouds:
     - kubernetes:
+        containerCap: 10
+        containerCapStr: "10"
         jenkinsTunnel: "jenkins-agent.jenkins.svc.cluster.local:50000"
         jenkinsUrl: "http://jenkins.jenkins.svc.cluster.local:8080"
         name: "kubernetes"
         namespace: "jenkins"
+        podLabels:
+          - key: "jenkins/jenkins-jenkins-agent"
+            value: "true"
         serverUrl: "https://kubernetes.default"
         templates:
           - containers:
@@ -15,8 +20,18 @@ jenkins:
                       value: "http://jenkins.jenkins.svc.cluster.local:8080/"
                 image: "jenkins/inbound-agent:3107.v665000b_51092-15"
                 name: "jnlp"
+                resourceLimitCpu: "512m"
+                resourceLimitMemory: "512Mi"
+                resourceRequestCpu: "512m"
+                resourceRequestMemory: "512Mi"
                 workingDir: "/home/jenkins/agent"
-            label: "default-agent"
-            name: "default-agent"
+            id: "e4c9c2dfb0f00a1c4759b687084b28e89b79bf351943087cc8afd93c45d8748f"
+            label: "jenkins-jenkins-agent"
+            name: "default"
             namespace: "jenkins"
+            nodeUsageMode: NORMAL
+            podRetention: "never"
+            serviceAccount: "default"
+            slaveConnectTimeout: 100
+            slaveConnectTimeoutStr: "100"
             yamlMergeStrategy: "override"

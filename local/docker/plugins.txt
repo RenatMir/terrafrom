@@ -1,5 +1,0 @@
-configuration-as-code:latest
-git:latest
-kubernetes:latest
-job-dsl:latest
-workflow-job:latest
