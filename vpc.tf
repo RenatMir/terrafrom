@@ -1,3 +1,3 @@
 resource "aws_vpc" "vpc" {
-  cidr = var.vpc_cidr_block
+  cidr_block = var.vpc_cidr_block
 }
