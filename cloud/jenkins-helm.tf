@@ -1,15 +1,10 @@
 resource "helm_release" "jenkins" {
   name       = "jenkins"
-  repository = "https://charts.jenkins.io"
   chart      = "jenkins"
-  version    = "3.6.0"
-  namespace  = "jenkins"
-  timeout    = 600
-  values = [
-    file("jenkins/jenkins-helm-values.yaml")
-  ]
+  repository = "./charts/jenkins"
+  namespace  = kubernetes_namespace.jenkins_namespace.metadata[0].name
 
-  depends_on = [
-    kubernetes_namespace.jenkins_namespace,
+  values = [
+    file("jenkins-helm-values.yaml")
   ]
 }
