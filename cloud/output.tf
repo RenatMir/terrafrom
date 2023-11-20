@@ -1,8 +1,3 @@
-output "cluster_id" {
-  description = "Kubernetes Cluster ID"
-  value       = module.eks.cluster_id
-}
-
 output "cluster_endpoint" {
   description = "Kubernetes Cluster Endpoint"
   value       = module.eks.cluster_endpoint
