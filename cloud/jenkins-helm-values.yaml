@@ -12,5 +12,5 @@ controller:
     - workflow-job:latest
     - permissivescript-security:latest
 
-  JCasC:
-    defaultConfig: false
+#  JCasC:
+#    defaultConfig: false
