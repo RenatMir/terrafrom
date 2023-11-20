@@ -18,14 +18,14 @@ module vpc {
   enable_dns_hostnames = true
 
   tags = {
-    "Name" = local.vpc_name
+    Name = local.vpc_name
   }
 
   public_subnet_tags = {
-    "Name" = "EKS-Jenkins-Public-Subnet"
+    Name = "EKS-Jenkins-Public-Subnet"
   }
 
   private_subnet_tags = {
-    "Name" = "EKS-Jenkins-Private-Subnet"
+    Name = "EKS-Jenkins-Private-Subnet"
   }
 }
