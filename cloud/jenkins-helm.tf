@@ -1,7 +1,6 @@
 resource "helm_release" "jenkins" {
   name       = "jenkins"
-  chart      = "jenkins"
-  repository = "./charts"
+  chart      = "./charts/jenkins"
   namespace  = kubernetes_namespace.jenkins_namespace.metadata[0].name
 
   values = [
