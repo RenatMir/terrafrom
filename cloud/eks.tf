@@ -6,14 +6,10 @@ module "eks" {
   cluster_version = var.cluster_version
 
   vpc_id  = module.vpc.vpc_id
-  subnets = module.vpc.private_subnets
+  subnet_ids = module.vpc.private_subnets
 
   tags = {
     Name = "Jenkins-EKS"
-  }
-
-  eks_managed_node_group_defaults = {
-    ami_type = "AL2_x86_64"
   }
 
   eks_managed_node_groups = {
