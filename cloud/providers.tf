@@ -15,14 +15,19 @@ terraform {
 }
 
 provider "kubernetes" {
-  host                   = data.aws_eks_cluster.cluster.endpoint
-  token                  = data.aws_eks_cluster_auth.cluster.token
-  cluster_ca_certificate = base64encode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+  host                   = module.eks.cluster_endpoint
+  cluster_ca_certificate = base64encode(module.eks.cluster_certificate_authority_data)
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    command     = "aws-iam-authenticator"
+    # This requires the aws-iam-authenticator to be installed locally where Terraform is executed
+    args        = ["token", "--cluster-id", module.eks.cluster_name]
+  }
 }
 
-provider "helm" {
-  kubernetes {}
-}
+#provider "helm" {
+#  kubernetes {}
+#}
 
 provider "aws" {
   region = var.aws_region
