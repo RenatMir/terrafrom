@@ -20,14 +20,6 @@ module "eks" {
     }
   }
 
-  aws_auth_roles = [
-    {
-      rolearn  = "arn:aws:iam::904204212286:user/terraform"
-      username = "terraform"
-      groups   = ["system:masters"]
-    },
-  ]
-
   tags = {
     Name = "Jenkins-EKS"
   }
