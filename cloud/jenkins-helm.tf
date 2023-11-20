@@ -1,6 +1,4 @@
 resource "helm_release" "jenkins" {
-  provider = helm.primary
-
   name       = "jenkins"
   repository = "https://charts.jenkins.io"
   chart      = "jenkins"

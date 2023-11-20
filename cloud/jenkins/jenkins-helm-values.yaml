@@ -10,6 +10,7 @@ controller:
     - kubernetes:latest
     - workflow-aggregator:latest
     - workflow-job:latest
+    - permissivescript-security:latest
 
   JCasC:
     defaultConfig: false
