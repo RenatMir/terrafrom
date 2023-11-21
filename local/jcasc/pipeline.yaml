@@ -1,0 +1,81 @@
+jobs:
+  - script: >
+      pipelineJob('Test Pipeline') {
+        definition {
+          cps {
+            script("""\
+            pipeline {
+              agent {
+                kubernetes {
+                  yaml '''
+                    apiVersion: v1
+                    kind: Pod
+                    metadata:
+                      labels:
+                        purpose: jenkins-agent
+                    spec:
+                      volumes:
+                      - name: docker-sock
+                        hostPath:
+                          path: /var/run/docker.sock 
+                      containers:
+                      - name: jdk-gradle
+                        image: gradle:8.4-jdk17
+                        command:
+                        - cat
+                        tty: true
+                      - name: docker
+                        image: docker:latest
+                        command:
+                        - cat
+                        tty: true
+                        volumeMounts:
+                         - mountPath: /var/run/docker.sock
+                           name: docker-sock
+                    '''
+                }
+              }
+              stages {
+                stage('Git Clone') {
+                  steps {
+                    git 'https://github.com/RenatMir/hello-world.git'
+                  }
+                }
+
+                stage('Gradle Build') {
+                    steps {
+                        container('jdk-gradle'){
+                          sh 'gradle build'
+                        }
+                    }
+                }
+
+                stage('Docker image build') {
+                    steps {
+                      echo "Building docker image helloworld"
+                    
+                      container('docker'){
+                        script {
+                            def buildArgs = "--build-arg JAR_NAME=helloworld-1 -f Dockerfile ."
+
+                            docker.build("helloworld:1", buildArgs)
+                        }
+                      }
+                      
+                    }
+                }
+        
+                stage('Run docker image') {
+                    steps {
+                      container('docker'){
+                       sh 'docker run helloworld:1' 
+                      }
+                    }
+                }
+              }
+            }
+            """.stripIndent())
+            sandbox()
+          }
+        }
+      }

@@ -9,6 +9,7 @@ controller:
     - job-dsl:latest
     - workflow-aggregator:latest
     - workflow-job:latest
+    - docker-workflow:latest
 
   JCasC:
     defaultConfig: false
