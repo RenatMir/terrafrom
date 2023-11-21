@@ -94,8 +94,8 @@ unclassified:
 tool:
   git:
     installations:
-      - home: "git"
-        name: "Default"
+      - name: "Default"
+        home: "git"
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"

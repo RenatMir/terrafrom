@@ -2,12 +2,11 @@ controller:
   image: "jenkins/jenkins"
   tag: "lts"
 
-  adminPassword: admin
   installPlugins:
     - configuration-as-code:latest
     - git:latest
-    - job-dsl:latest
     - kubernetes:latest
+    - job-dsl:latest
     - workflow-aggregator:latest
     - workflow-job:latest
 
