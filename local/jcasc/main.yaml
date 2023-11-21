@@ -53,6 +53,9 @@ globalCredentialsConfiguration:
   configuration:
     providerFilter: "none"
     typeFilter: "none"
+appearance:
+  prism:
+    theme: PRISM
 security:
   apiToken:
     creationOfLegacyTokenEnabled: false
@@ -81,8 +84,6 @@ unclassified:
     useTls: false
   pollSCM:
     pollingThreadCount: 10
-  prismConfiguration:
-    theme: PRISM
   scmGit:
     addGitTagAction: false
     allowSecondFetch: false

@@ -20,7 +20,7 @@ resource "kubernetes_config_map" "jcasc" {
 
   data = {
     "main.yaml" = file("jcasc/main.yaml")
-    "kubernetes.yaml" = file("jcasc/kubernetes.yaml"),
+    "kubernetes.yaml" = file("jcasc/kubernetes.yaml")
     "pipeline.yaml" = file("jcasc/pipeline.yaml")
   }
 }
