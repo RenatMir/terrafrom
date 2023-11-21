@@ -12,16 +12,16 @@ module "eks" {
     first = {
       name = "node-group-1"
 
-      instance_type = "t3.micro"
+      instance_types = ["t3.micro"]
 
       min_size     = 1
       max_size     = 3
       desired_size = 2
     }
-    first = {
+    second = {
       name = "node-group-2"
 
-      instance_type = "t3.micro"
+      instance_types = ["t3.micro"]
 
       min_size     = 1
       max_size     = 2
