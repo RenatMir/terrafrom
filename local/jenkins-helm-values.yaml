@@ -2,6 +2,9 @@ controller:
   image: "jenkins/jenkins"
   tag: "lts"
 
+  serviceType: NodePort
+  nodePort: 32000
+
   installPlugins:
     - configuration-as-code:latest
     - git:latest
